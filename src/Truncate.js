@@ -11,7 +11,8 @@ export default class Truncate extends Component {
         ]),
         trimWhitespace: PropTypes.bool,
         breakAll: PropTypes.bool,
-        onTruncate: PropTypes.func
+        onTruncate: PropTypes.func,
+        width: PropTypes.number
     };
 
     static defaultProps = {
@@ -19,7 +20,8 @@ export default class Truncate extends Component {
         ellipsis: '…',
         lines: 1,
         trimWhitespace: false,
-        breakAll: false
+        breakAll: false,
+        width:0
     };
 
     state = {};
@@ -63,6 +65,9 @@ export default class Truncate extends Component {
         // Render was based on outdated refs and needs to be rerun
         if (this.props.children !== prevProps.children) {
             this.forceUpdate();
+        }
+        if (this.props.width !== prevProps.width) {
+          this.onResize();
         }
     }
 
